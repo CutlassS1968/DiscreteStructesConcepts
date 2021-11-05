@@ -3,7 +3,7 @@ import java.awt.Graphics;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import WeightedGraph.*;
+import Graph.WeightedGraph.*;
 
 /**
  * Displays a Complete Weighted Graph
@@ -12,8 +12,8 @@ public class Demo extends JPanel {
 
   public Graph graph;
   public Demo() {
-    int vertices = 5;
-    initializeGraph(vertices);
+    int size = 5;
+    initializeCompleteGraph(size);
   }
 
   @Override
@@ -23,7 +23,7 @@ public class Demo extends JPanel {
     final int vDiam = (int)(this.getParent().getSize().getHeight() / 30);
 
     // Number of vertices
-    final int size = graph.getVertices();
+    final int size = graph.getVertices().length;
 
     // Radius of graph
     int r = (int)(this.getParent().getSize().getHeight() / 3);
@@ -36,12 +36,14 @@ public class Demo extends JPanel {
     for (int i = 0; i < size; i++) {
       int x = (int)((this.getSize().getWidth()/2) + (r*Math.cos(d*i)));
       int y = (int)((this.getSize().getHeight()/2) + (r*Math.sin(d*i)));
+      graph.getVertices()[i].setX(x);
+      graph.getVertices()[i].setY(y);
       g.fillOval(x, y, vDiam, vDiam);
     }
 
     // Draw Edges
     g.setColor(Color.DARK_GRAY);
-    for (int i = 0; i < graph.getVertices(); i++) {
+    for (int i = 0; i < graph.getVertices().length; i++) {
       LinkedList<Edge> list = graph.getAdjacencyList()[i];
       for (Edge edge : list) {
         int x1 = (int)((this.getSize().getWidth()/2) + (r*Math.cos(d*i)) + (vDiam/2));
@@ -58,11 +60,11 @@ public class Demo extends JPanel {
     }
   }
 
-  public void initializeGraph(int vertices) {
-    graph = new Graph(vertices);
-    for (int i = 0; i < vertices; i++) {
-      for (int j = i + 1; j < vertices; j++) {
-        graph.addEdge(i, j, (int)(Math.random() * vertices + 1));
+  public void initializeCompleteGraph(int size) {
+    graph = new Graph(size);
+    for (int i = 0; i < size; i++) {
+      for (int j = i + 1; j < size; j++) {
+        graph.addEdge(i, j, (int)(Math.random() * size + 1));
       }
     }
   }

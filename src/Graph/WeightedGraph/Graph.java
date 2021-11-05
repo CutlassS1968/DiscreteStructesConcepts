@@ -1,4 +1,4 @@
-package WeightedGraph;
+package Graph.WeightedGraph;
 
 import java.util.LinkedList;
 
@@ -6,15 +6,16 @@ import java.util.LinkedList;
  * Credit: https://algorithms.tutorialhorizon.com/weighted-graph-implementation-java/
  */
 public class Graph {
-  public int vertices;
+  public Vertex[] vertices;
   public LinkedList<Edge>[] adjacencylist;
 
-  public Graph(int vertices) {
-    this.vertices = vertices;
-    adjacencylist = new LinkedList[vertices];
-    //initialize adjacency lists for all the vertices
-    for (int i = 0; i < vertices; i++) {
+  public Graph(int size) {
+    this.vertices = new Vertex[size];
+    adjacencylist = new LinkedList[size];
+    //initialize adjacency lists and vertices
+    for (int i = 0; i < size; i++) {
       adjacencylist[i] = new LinkedList<>();
+      vertices[i] = new Vertex();
     }
   }
 
@@ -24,7 +25,7 @@ public class Graph {
   }
 
   public void printGraph() {
-    for (int i = 0; i < vertices; i++) {
+    for (int i = 0; i < vertices.length; i++) {
       LinkedList<Edge> list = adjacencylist[i];
       for (Edge edge : list) {
         System.out.println("vertex-" + i + " is connected to " +
@@ -33,7 +34,7 @@ public class Graph {
     }
   }
 
-  public int getVertices() {
+  public Vertex[] getVertices() {
     return this.vertices;
   }
 

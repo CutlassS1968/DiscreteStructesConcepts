@@ -1,4 +1,4 @@
-package WeightedGraph;
+package Graph.WeightedGraph;
 
 /**
  * Credit: https://algorithms.tutorialhorizon.com/weighted-graph-implementation-java/
