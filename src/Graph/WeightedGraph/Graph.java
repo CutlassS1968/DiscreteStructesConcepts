@@ -6,8 +6,9 @@ import java.util.LinkedList;
  * Credit: https://algorithms.tutorialhorizon.com/weighted-graph-implementation-java/
  */
 public class Graph {
-  public Vertex[] vertices;
-  public LinkedList<Edge>[] adjacencylist;
+
+  private Vertex[] vertices;
+  private LinkedList<Edge>[] adjacencylist;
 
   public Graph(int size) {
     this.vertices = new Vertex[size];
@@ -15,13 +16,13 @@ public class Graph {
     //initialize adjacency lists and vertices
     for (int i = 0; i < size; i++) {
       adjacencylist[i] = new LinkedList<>();
-      vertices[i] = new Vertex();
+      vertices[i] = new Vertex(i);
     }
   }
 
-  public void addEdge(int source, int destination, int weight) {
+  public void addEdge(Vertex source, Vertex destination, int weight) {
     Edge edge = new Edge(source, destination, weight);
-    adjacencylist[source].add(edge); //for directed graph
+    adjacencylist[source.getLabel()].add(edge);
   }
 
   public void printGraph() {
@@ -29,7 +30,7 @@ public class Graph {
       LinkedList<Edge> list = adjacencylist[i];
       for (Edge edge : list) {
         System.out.println("vertex-" + i + " is connected to " +
-            edge.w + " with weight " + edge.weight);
+            edge.getEnd() + " with weight " + edge.getWeight());
       }
     }
   }

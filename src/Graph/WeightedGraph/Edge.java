@@ -4,22 +4,23 @@ package Graph.WeightedGraph;
  * Credit: https://algorithms.tutorialhorizon.com/weighted-graph-implementation-java/
  */
 public class Edge {
-  int v;
-  int w;
-  int weight;
 
-  public Edge(int v, int w, int weight) {
-    this.v = v;
-    this.w = w;
+  private Vertex start;
+  private Vertex end;
+  private int weight;
+
+  public Edge(Vertex start, Vertex end, int weight) {
+    this.start = start;
+    this.end = end;
     this.weight = weight;
   }
 
-  public int getV() {
-    return v;
+  public Vertex getStart() {
+    return start;
   }
 
-  public int getW() {
-    return w;
+  public Vertex getEnd() {
+    return end;
   }
 
   public int getWeight() {
